@@ -65,52 +65,88 @@
 
     <div class="jumbotron">
         <div class="container">
-            <h1>Hello, world!</h1>
+        <?php
+            $cleverWelcomeMessage = 'All the love, none of the crap!';
+            $pupCount = rand(50,100);
+        ?>
 
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the
-                hero unit and three supporting pieces of content. Use it as a starting point to create something more
-                unique.</p>
+        <h1><?php echo strtolower($cleverWelcomeMessage); ?></h1>
+
+        <p>With over <?php echo $pupCount; ?> pet friends!</p>
+           
 
             <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
         </div>
     </div>
 
+    <?php
+        $pet1 = array(
+            'name' => 'Chew Barka',
+            'breed' => 'Bichon',
+            'age'  => '2 years',
+            'weight' => 8,
+            'bio'   => 'The park, The pool or the Playground - I love to go anywhere! I am really great at... SQUIRREL!',
+            'filename' => 'pet1.png'
+        );
+        
+        $pet2 = array(
+            'name' => 'Spark Pug',
+            'breed' => 'Pug',
+            'age'  => '1.5 years',
+            'weight' => 11,
+            'bio'   => 'You want to go to the dog park in style? Then I am your pug!',
+            'filename' => 'pet2.png'
+        );
+        
+        $pet3 = array(
+            'name' => 'Pico de Gato',
+            'breed' => 'Bengal',
+            'age'  => '5 years',
+            'weight' => 9,
+            'bio'   => 'Oh hai, if you do not have a can of salmon I am not interested.',
+            'filename' => 'pet3.png'
+        );
+        
+        $pancake = array(
+            'name' => 'Pancake the Bulldog',
+            'age'  => '1 year',
+            'weight' => 9,
+            'bio' => 'Lorem Ipsum',
+            'filename' => 'pancake.png'
+        );
+        $pancake['breed'] = 'Bulldog';
+        $pets = array($pet1, $pet2, $pet3, $pancake);
+        var_dump($pets);
+        die;
+    ?>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                    condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-                    euismod. Donec sed odio dui. </p>
+            <div class="col-lg-4 pet-list-item">
+                <h2><?php echo $pancake['name']; ?></h2>
 
-                <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+                <img src="/images/<?php echo $pancake['filename']; ?>" class="img-rounded">
+
+                <blockquote class="pet-details">
+                    <span class="label label-info"><?php echo $pancake['breed']; ?></span>
+                    <?php echo $pancake['age']; ?>
+                    <?php echo $pancake['weight']; ?> lbs
+                </blockquote>
+
+                <p>
+                    <?php echo $pancake['bio']; ?>
+                </p>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                    condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-                    euismod. Donec sed odio dui. </p>
-
-                <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
-                    porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                    fermentum massa justo sit amet risus.</p>
-
-                <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-            </div>
+            <?php
+                foreach ($pets as $pet) {
+                    echo '<div class="col-lg-4">';
+                    echo '<h2>';
+                    echo $pet;
+                    echo '</h2>';
+                    echo '</div>';
+                }
+            ?>
         </div>
-
-        <hr>
-
-        <footer>
-            <p>&copy; AirPupNMeow.com</p>
-        </footer>
     </div>
     <!-- /container -->
 
