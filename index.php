@@ -1,3 +1,12 @@
+<?php
+     $petsJson = file_get_contents('data/pets.json');
+     $pets = json_decode($petsJson, true);
+ 
+     $pets = array_reverse($pets);
+ 
+     $cleverWelcomeMessage = 'All the love, none of the crap!';
+     $pupCount = count($pets);
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +76,7 @@
         <div class="container">
         <?php
             $cleverWelcomeMessage = 'All the love, none of the crap!';
-            $pupCount = rand(50,100);
+            $pupCount = count($pets);
         ?>
 
         <h1><?php echo strtolower($cleverWelcomeMessage); ?></h1>
@@ -79,74 +88,26 @@
         </div>
     </div>
 
-    <?php
-        $pet1 = array(
-            'name' => 'Chew Barka',
-            'breed' => 'Bichon',
-            'age'  => '2 years',
-            'weight' => 8,
-            'bio'   => 'The park, The pool or the Playground - I love to go anywhere! I am really great at... SQUIRREL!',
-            'filename' => 'pet1.png'
-        );
-        
-        $pet2 = array(
-            'name' => 'Spark Pug',
-            'breed' => 'Pug',
-            'age'  => '1.5 years',
-            'weight' => 11,
-            'bio'   => 'You want to go to the dog park in style? Then I am your pug!',
-            'filename' => 'pet2.png'
-        );
-        
-        $pet3 = array(
-            'name' => 'Pico de Gato',
-            'breed' => 'Bengal',
-            'age'  => '5 years',
-            'weight' => 9,
-            'bio'   => 'Oh hai, if you do not have a can of salmon I am not interested.',
-            'filename' => 'pet3.png'
-        );
-        
-        $pancake = array(
-            'name' => 'Pancake the Bulldog',
-            'age'  => '1 year',
-            'weight' => 9,
-            'bio' => 'Lorem Ipsum',
-            'filename' => 'pancake.png'
-        );
-        $pancake['breed'] = 'Bulldog';
-        $pets = array($pet1, $pet2, $pet3, $pancake);
-        var_dump($pets);
-        die;
-    ?>
+    <?php echo $pets[2]['bio']; ?>
     <div class="container">
         <div class="row">
+            <?php foreach ($pets as $cutePet) { ?>
+                <div class="col-lg-4 pet-list-item">
+                    <h2><?php echo $cutePet['name']; ?></h2>
 
-            <div class="col-lg-4 pet-list-item">
-                <h2><?php echo $pancake['name']; ?></h2>
+                    <img src="/images/<?php echo $cutePet['image']; ?>" class="img-rounded">
 
-                <img src="/images/<?php echo $pancake['filename']; ?>" class="img-rounded">
+                    <blockquote class="pet-details">
+                        <span class="label label-info"><?php echo $cutePet['breed']; ?></span>
+                        <?php echo $cutePet['age']; ?>
+                        <?php echo $cutePet['weight']; ?> lbs
+                    </blockquote>
 
-                <blockquote class="pet-details">
-                    <span class="label label-info"><?php echo $pancake['breed']; ?></span>
-                    <?php echo $pancake['age']; ?>
-                    <?php echo $pancake['weight']; ?> lbs
-                </blockquote>
-
-                <p>
-                    <?php echo $pancake['bio']; ?>
-                </p>
-            </div>
-            <?php
-                foreach ($pets as $pet) {
-                    echo '<div class="col-lg-4">';
-                    echo '<h2>';
-                    echo $pet;
-                    echo '</h2>';
-                    echo '</div>';
-                }
-            ?>
-        </div>
+                    <p>
+                        <?php echo $cutePet['bio']; ?>
+                    </p>
+                </div>
+            <?php } ?>
     </div>
     <!-- /container -->
 
